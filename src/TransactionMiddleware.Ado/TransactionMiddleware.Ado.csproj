@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <LangVersion>latest</LangVersion>
+	  <Version>1.0.0</Version>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="TransactionMiddleware.Tests" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\TransactionMiddleware.Ado.Abstraction\TransactionMiddleware.Ado.Abstraction.csproj" />
+	  <ProjectReference Include="..\TransactionMiddleware.Core\TransactionMiddleware.Core.csproj" />
+	</ItemGroup>
+
+</Project>
