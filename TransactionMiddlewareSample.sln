@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.8.34601.278
+VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5FCB420C-82CE-46BE-8F90-5BD570A1BCC6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7A9D07DE-FAF6-40D9-8C92-63FF96FEE01D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B9D87445-0506-4084-8C7D-111662C3B77D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionMiddlewareSample", "TransactionMiddlewareSample\TransactionMiddlewareSample.csproj", "{88AAA70F-8DDC-4541-8AE2-0A8293FDB17E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionMiddleware.Core", "src\TransactionMiddleware.Core\TransactionMiddleware.Core.csproj", "{4A06F98B-641A-4DBF-B273-8B96E02A54BB}"
 EndProject
@@ -29,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{88AAA70F-8DDC-4541-8AE2-0A8293FDB17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88AAA70F-8DDC-4541-8AE2-0A8293FDB17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88AAA70F-8DDC-4541-8AE2-0A8293FDB17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88AAA70F-8DDC-4541-8AE2-0A8293FDB17E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A06F98B-641A-4DBF-B273-8B96E02A54BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A06F98B-641A-4DBF-B273-8B96E02A54BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A06F98B-641A-4DBF-B273-8B96E02A54BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,7 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{88AAA70F-8DDC-4541-8AE2-0A8293FDB17E} = {B9D87445-0506-4084-8C7D-111662C3B77D}
 		{4A06F98B-641A-4DBF-B273-8B96E02A54BB} = {5FCB420C-82CE-46BE-8F90-5BD570A1BCC6}
 		{69C312D8-D066-4AFE-ADC7-604AE04C344A} = {5FCB420C-82CE-46BE-8F90-5BD570A1BCC6}
 		{F7BDAB5D-31CA-4AAF-A788-464D36564945} = {5FCB420C-82CE-46BE-8F90-5BD570A1BCC6}

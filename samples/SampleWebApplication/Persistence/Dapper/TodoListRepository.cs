@@ -9,7 +9,7 @@ public class TodoListRepository(SqlConnectionProvider connectionProvider) : ITod
 {
     private readonly IDbConnection _connection = connectionProvider.GetDbConnection;
 
-    public async Task<int> AddTodoListAsync(TodoList todoList)
+    public async Task<int> AddAsync(TodoList todoList)
     {
         const string command = "INSERT INTO TodoLists (Title) " +
                                "OUTPUT Inserted.Id " +
@@ -23,12 +23,12 @@ public class TodoListRepository(SqlConnectionProvider connectionProvider) : ITod
         return id;
     }
 
-    public async Task<IEnumerable<TodoList>> GetTodoListsAsync()
+    public async Task<IEnumerable<TodoList>> GetListsAsync()
     {
         return (await _connection.ExecuteScalarAsync<IEnumerable<TodoList>>("SELECT * FROM TodoLists")) ?? Enumerable.Empty<TodoList>();
     }
 
-    public async Task<TodoList?> GetTodoListAsync(int id)
+    public async Task<TodoList?> GetByIdAsync(int id)
     {
         const string command = "SELECT tl.Id, tl.Title, ti.Id, ti.TodoListId, ti.Title, od.Note " +
                                "FROM TodoLists tl " +

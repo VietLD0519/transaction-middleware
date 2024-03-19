@@ -4,7 +4,9 @@ namespace SampleWebApplication.Persistence;
 
 public interface ITodoListRepository
 {
-    Task<int> AddTodoListAsync(TodoList todoList);
+    Task<int> AddAsync(TodoList todoList);
 
-    Task<IEnumerable<TodoList>> GetTodoListsAsync();
+    Task<IEnumerable<TodoList>> GetListsAsync();
+
+    Task<TodoList?> GetByIdAsync(int id);
 }

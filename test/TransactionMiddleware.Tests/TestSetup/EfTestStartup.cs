@@ -1,19 +1,18 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using SampleWebApplication;
 using SampleWebApplication.Persistence;
 using SampleWebApplication.Persistence.EntityFramework;
-using TransactionMiddleware;
-using TransactionMiddleware.Ado;
-using IApplicationLifetime = Microsoft.Extensions.Hosting.IHostApplicationLifetime;
+using TransactionMiddleware.Ado.Abstraction;
+using TransactionMiddleware.EntityFramework;
 
-namespace SampleWebApplication;
-
-public class Startup(IConfiguration configuration)
+public class EfTestStartup(IConfiguration configuration) : Startup(configuration)
 {
-    public IConfiguration Configuration { get; } = configuration;
-
-    // This method gets called by the runtime. Use this method to add services to the container.
-    public virtual void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
@@ -22,24 +21,14 @@ public class Startup(IConfiguration configuration)
         services.AddDbContext<TodoDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-        services.AddTransactionMiddleware(options =>
-        {
-            options.UseAdo(new SqlConnection(Configuration.GetConnectionString("Default")));
-        });
-
-        services.AddTransient<ITodoListRepository, Persistence.Dapper.TodoListRepository>();
-        services.AddTransient<ITodoItemRepository, Persistence.Dapper.TodoItemRepository>();
+        services.AddScoped((_) => new SqlConnectionProvider(new SqlConnection(Configuration.GetConnectionString("Default"))));
+        services.AddTransient<ITodoListRepository, TodoListRepository>();
+        services.AddTransient<ITodoItemRepository, TodoItemRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApplicationLifetime appLiftime)
     {
-        if (env.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
         app.UseRouting();
 
         app.UseAuthorization();
