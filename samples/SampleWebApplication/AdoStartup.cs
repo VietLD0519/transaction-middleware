@@ -8,10 +8,8 @@ using IApplicationLifetime = Microsoft.Extensions.Hosting.IHostApplicationLifeti
 
 namespace SampleWebApplication;
 
-public class Startup(IConfiguration configuration)
+public class AdoStartup(IConfiguration configuration)
 {
-    public IConfiguration Configuration { get; } = configuration;
-
     // This method gets called by the runtime. Use this method to add services to the container.
     public virtual void ConfigureServices(IServiceCollection services)
     {
@@ -20,11 +18,11 @@ public class Startup(IConfiguration configuration)
         services.AddSwaggerGen();
 
         services.AddDbContext<TodoDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            options.UseSqlServer(configuration.GetConnectionString("Default")));
 
         services.AddTransactionMiddleware(options =>
         {
-            options.UseAdo(new SqlConnection(Configuration.GetConnectionString("Default")));
+            options.UseAdo(new SqlConnection(configuration.GetConnectionString("Default")));
         });
 
         services.AddTransient<ITodoListRepository, Persistence.Dapper.TodoListRepository>();
@@ -32,13 +30,12 @@ public class Startup(IConfiguration configuration)
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApplicationLifetime appLiftime)
+    public virtual void Configure(IApplicationBuilder app, IApplicationLifetime appLiftime)
     {
-        if (env.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        app.UseApiExceptionHandling();
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         app.UseRouting();
 

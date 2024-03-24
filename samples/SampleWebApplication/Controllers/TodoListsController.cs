@@ -27,15 +27,6 @@ public class TodoListsController : ControllerBase
         return await repository.GetTodoItemsAsync(id);
     }
 
-    //[HttpPost]
-    //[Transaction]
-    //public async Task<IActionResult> Post([FromBody] TodoListRequest request, [FromServices] ITodoListRepository repository)
-    //{
-    //    var id = await repository.AddAsync(request.ToTodoListModel);
-
-    //    return CreatedAtAction(nameof(Get), new { id });
-    //}
-
     [HttpPost]
     [Transaction]
     public async Task<IActionResult> Post(
@@ -57,5 +48,28 @@ public class TodoListsController : ControllerBase
         }
 
         return CreatedAtAction(nameof(Get), new { id = todoListId });
+    }
+
+    [HttpPost("exception")]
+    [Transaction]
+    public async Task<IActionResult> PostWithException(
+        [FromServices] ITodoListRepository todoListRepository,
+        [FromServices] ITodoItemRepository todoItemRepository,
+        [FromBody] TodoListRequest request
+    )
+    {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem();
+        }
+
+        var todoListId = await todoListRepository.AddAsync(new TodoList { Title = request.Title });
+
+        foreach (var item in request.Items)
+        {
+            await todoItemRepository.AddTodoItemAsync(new TodoItem { TodoListId = todoListId, Title = item.Title, Note = item.Note });
+        }
+
+        throw new InvalidOperationException("For testing purpose");
     }
 }
