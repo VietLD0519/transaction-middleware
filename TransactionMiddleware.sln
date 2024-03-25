@@ -15,11 +15,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionMiddleware.Ado",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionMiddleware.Ado.Abstraction", "src\TransactionMiddleware.Ado.Abstraction\TransactionMiddleware.Ado.Abstraction.csproj", "{F7BDAB5D-31CA-4AAF-A788-464D36564945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionMiddleware.EntityFramework", "src\TransactionMiddleware.EntityFramework\TransactionMiddleware.EntityFramework.csproj", "{3CB4679F-DCC3-481A-915D-0F412E895603}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionMiddleware.EntityFramework", "src\TransactionMiddleware.EntityFramework\TransactionMiddleware.EntityFramework.csproj", "{3CB4679F-DCC3-481A-915D-0F412E895603}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionMiddleware.Tests", "test\TransactionMiddleware.Tests\TransactionMiddleware.Tests.csproj", "{206E49CE-3C48-4E71-BD11-A0FBE6A12472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionMiddleware.Tests", "test\TransactionMiddleware.Tests\TransactionMiddleware.Tests.csproj", "{206E49CE-3C48-4E71-BD11-A0FBE6A12472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApplication", "samples\SampleWebApplication\SampleWebApplication.csproj", "{54D23223-CADF-4063-B387-2D8492CA2DB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebApplication", "samples\SampleWebApplication\SampleWebApplication.csproj", "{54D23223-CADF-4063-B387-2D8492CA2DB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{832F8537-D648-436D-BCE5-E98085C6D9E7}"
+	ProjectSection(SolutionItems) = preProject
+		assets\icon.png = assets\icon.png
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
